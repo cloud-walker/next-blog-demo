@@ -15,9 +15,11 @@ const PostPage = ({title, author, description, keywords, content, banner}) => {
         <title>{title}</title>
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords.join(', ')} />
+        <meta name="author" content={author} />
       </Head>
 
       <main className="center">
+        <address>Author: {author}</address>
         <h1>{title}</h1>
 
         <img src={banner} alt={title} />
@@ -41,6 +43,7 @@ export const getStaticProps = async ({params: {slug}}) => {
   const fileBuffer = await readFile(path.join('content', 'blog', `${slug}.md`))
   const fileContent = fileBuffer.toString()
   const {content, data} = matter(fileContent)
+
   return {props: {...data, content}}
 }
 
