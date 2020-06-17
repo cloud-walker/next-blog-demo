@@ -33,7 +33,6 @@ export const getStaticPaths = async () => {
   const paths = filenames.map((filename) => ({
     params: {slug: filename.replace('.md', '')},
   }))
-  console.log(paths)
 
   return {paths, fallback: false}
 }
